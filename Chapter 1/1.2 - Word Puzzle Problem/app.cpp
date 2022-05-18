@@ -36,7 +36,7 @@ class WordPuzzle {
             words = wordList;
         }
 
-        void print() {
+        void print() const {
             for(int i = 0; i < rows; i++) {
                 if (i == 0) {
                     cout << "  ";
@@ -73,6 +73,14 @@ class WordPuzzle {
             for (const tuple<string, tuple<int, int>> & x : results) {
                 cout << "Word Found: " << get<0>(x);
                 cout << " at (i = " << get<0>(get<1>(x)) << ", j = " << get<1>(get<1>(x)) << ")" << endl;
+            }
+            if (words.size() == 0)
+                cout << "Game Completed!" << endl;
+            else {
+                cout << "Missing Words: ";
+                for (string & x : words)
+                    cout << x << " ";
+                cout << endl;
             }
         }
 

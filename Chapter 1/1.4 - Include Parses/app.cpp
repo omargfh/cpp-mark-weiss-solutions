@@ -1,13 +1,15 @@
 #include <iostream>
 #include <vector>
+#include <cstdio>
 #include <regex>
 #include <fstream>
 #include <sstream>
 
 using namespace std;
 
-/* outputs to a.out */
+/* no gaurds on chain includes */
 void include(string filename) {
+    int total_includes = 0;
     /* open files */
     ifstream in;
     in.open(filename);
@@ -27,10 +29,19 @@ void include(string filename) {
             while (getline(includefile, subline)){
                 out << subline << endl;
             }
+            total_includes++;
         }
         else {
             out << line << endl;
         }
+    }
+    if (total_includes != 0) {
+        remove("old.parsed");
+        rename("a.parsed", "old.parsed");
+        include("old.parsed");
+    }
+    else {
+        remove("old.parsed");
     }
 }
 

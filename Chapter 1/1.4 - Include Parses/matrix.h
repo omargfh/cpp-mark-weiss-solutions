@@ -1,7 +1,7 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 
-#include <vector>
+#include "matrix.h"
 using namespace std;
 
 template <typename Object>
